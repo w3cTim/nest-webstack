@@ -56,5 +56,30 @@ yarn add nestjs-mongoose-crud
 yarn add @nestjs/swagger swagger-ui-express
 ```
 
-在 main.js 中配置好 Swagger
+在 main.js 中配置好 [Swagger](https://docs.nestjs.cn/7/recipes?id=openapi-swagger)
+
+---
+
+cd 到 server 同级，添加后台管理界面 Vue
+
+```shell
+vue create admin
+
+# 安装好后 cd admin，安装 element-ui 与 路由
+cd admin
+
+vue add element
+
+vue add router
+
+# 都安装好后，再转成 TypeScript 项目，一路默认安装
+vue add typescript
+
+# 安装好后 启动
+yarn serve
+```
+
+
+
+
 
