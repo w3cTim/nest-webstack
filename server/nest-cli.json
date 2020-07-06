@@ -34,6 +34,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/db/tsconfig.lib.json"
       }
+    },
+    "commom": {
+      "type": "library",
+      "root": "libs/commom",
+      "entryFile": "index",
+      "sourceRoot": "libs/commom/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/commom/tsconfig.lib.json"
+      }
     }
   }
 }

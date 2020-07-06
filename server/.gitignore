@@ -32,3 +32,6 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# server 需要忽略.env 而 admin 是不需要
+.env

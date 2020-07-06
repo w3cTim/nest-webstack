@@ -22,12 +22,14 @@
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.12",
     "@typegoose/typegoose": "^7.2.0",
     "@types/mongoose": "^5.7.29",
     "mongoose": "^5.9.21",
+    "multer-aliyun-oss": "^1.1.0",
     "nestjs-mongoose-crud": "^2.0.0",
     "nestjs-typegoose": "^7.1.28",
     "reflect-metadata": "^0.1.13",
@@ -76,7 +78,9 @@
     ],
     "moduleNameMapper": {
       "@libs/db/(.*)": "<rootDir>/libs/db/src/$1",
-      "@libs/db": "<rootDir>/libs/db/src"
+      "@libs/db": "<rootDir>/libs/db/src",
+      "@app/commom/(.*)": "<rootDir>/libs/commom/src/$1",
+      "@app/commom": "<rootDir>/libs/commom/src"
     }
   }
 }

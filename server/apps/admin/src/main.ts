@@ -9,9 +9,9 @@ async function bootstrap() {
   // 允许跨域
   app.enableCors();
   // 静态托管
-  app.useStaticAssets('uploads', {
-    prefix: '/uploads',
-  });
+  // app.useStaticAssets('uploads', {
+  //   prefix: '/uploads',
+  // });
 
   const options = new DocumentBuilder()
     .setTitle('WebStack-后台管理API')
@@ -21,6 +21,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(3009);
+  const PORT = process.env.ADMIN_PORT || 3009;
+  await app.listen(PORT);
+  console.log(`http://localhost:${PORT}/api-docs`);
 }
 bootstrap();

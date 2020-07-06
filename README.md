@@ -94,3 +94,22 @@ yarn add axios @types/axios
 ```shell
 yarn add @smallwei/avue@2.4.0
 ```
+
+添加上传图片到 阿里 oss，注意是安装到后端
+
+```shell
+cd ../server
+yarn add multer-aliyun-oss
+```
+
+添加 Nest 环境变量
+
+```shell
+yarn add @nestjs/config
+
+# 创建公共模块，选择默认
+nest g lib commom
+
+# 执行后 libs 就多了个 commom 模块
+```
+

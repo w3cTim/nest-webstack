@@ -11,12 +11,23 @@ const models = TypegooseModule.forFeature([User, Category, WebStack]);
 @Global()
 @Module({
   imports: [
-    TypegooseModule.forRoot('mongodb://w3ctim.com:27017/webstack', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
+    TypegooseModule.forRootAsync({
+      useFactory() {
+        return {
+          uri: process.env.DB,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useCreateIndex: true,
+          useFindAndModify: false,
+        };
+      },
     }),
+    // TypegooseModule.forRoot(process.env.DB, {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    //   useCreateIndex: true,
+    //   useFindAndModify: false,
+    // }),
     models,
   ],
   providers: [DbService],

@@ -23,7 +23,8 @@ export class AppController {
   // 上传拦截器 file 为前端上传 key
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile('file') file) {
-    return { url: `http://localhost:3009/uploads/${file.filename}` };
+    return file;
+    //return { url: `http://localhost:3009/uploads/${file.filename}` };
     // return {
     //   ...file,
     //   name: file.url,

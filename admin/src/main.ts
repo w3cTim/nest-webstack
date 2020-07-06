@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 // 需要在新建 custom-vue.d.ts 文件中申明，再重启编辑器(或 CMD + Shift + P ，reload window)
 // https://cn.vuejs.org/v2/guide/typescript.html#%E5%A2%9E%E5%BC%BA%E7%B1%BB%E5%9E%8B%E4%BB%A5%E9%85%8D%E5%90%88%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8
 const http = axios.create({
-  baseURL: 'http://localhost:3009/',
+  baseURL: process.env.VUE_APP_API_URL,
 })
 
 // AVue 使用 $httpjax 上传文件的也需要祖册一下

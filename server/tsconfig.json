@@ -17,6 +17,12 @@
       ],
       "@libs/db/*": [
         "libs/db/src/*"
+      ],
+      "@app/commom": [
+        "libs/commom/src"
+      ],
+      "@app/commom/*": [
+        "libs/commom/src/*"
       ]
     }
   }
