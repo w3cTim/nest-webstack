@@ -1,9 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  // 存储数据必须指定基于具体的框架
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  // 允许跨域
+  app.enableCors();
+  // 静态托管
+  app.useStaticAssets('uploads', {
+    prefix: '/uploads',
+  });
 
   const options = new DocumentBuilder()
     .setTitle('WebStack-后台管理API')

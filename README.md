@@ -63,6 +63,10 @@ yarn add @nestjs/swagger swagger-ui-express
 cd 到 server 同级，添加后台管理界面 Vue
 
 ```shell
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+
 vue create admin
 
 # 安装好后 cd admin，安装 element-ui 与 路由
@@ -79,7 +83,14 @@ vue add typescript
 yarn serve
 ```
 
+安装 axios 及 TypeScript 提示包
 
+```shell
+yarn add axios @types/axios
+```
 
+安装 AVue 2.4.0 版本，目前 2.6.1 版本上传文件有 bug
 
-
+```shell
+yarn add @smallwei/avue@2.4.0
+```
