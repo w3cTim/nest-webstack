@@ -17,6 +17,7 @@ async function bootstrap() {
     .setTitle('WebStack-后台管理API')
     .setDescription('供后台管理界面调用的服务端API')
     .setVersion('1.0')
+    .addBearerAuth() // 启动 Bearer Token
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);

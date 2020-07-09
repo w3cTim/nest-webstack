@@ -110,6 +110,38 @@ yarn add @nestjs/config
 # 创建公共模块，选择默认
 nest g lib commom
 
-# 执行后 libs 就多了个 commom 模块
+# 执行后 libs 就添加了 commom 模块
 ```
 
+添加 用户认证
+
+```shell
+cd server
+# 添加 auth 模块与控制器
+nest g mo -p admin auth
+nest g co -p admin auth
+```
+
+添加 加密模块
+
+```shell
+yarn add bcryptjs
+
+# bcryptjs 纯 JS 库，无 TypeScript 提示，所以再添加描述文件
+# -D：添加到开发依赖
+yarn add -D @types/bcryptjs
+```
+
+添加 Passport 与 jwt、local 策略
+Passport 是一个 Node 平台的非常出名的身份认证中间件
+
+```shell
+yarn add @nestjs/passport passport passport-local passport-jwt
+yarn add -D @types/passport @types/passport-local @types/passport-jwt
+```
+
+添加 JWT 模块，添加后全局注册
+
+```shell
+yarn add @nestjs/jwt
+```

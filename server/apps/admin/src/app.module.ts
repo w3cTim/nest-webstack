@@ -7,6 +7,7 @@ import { WebstackModule } from './webstack/webstack.module';
 import { CategoryModule } from './category/category.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { CommomModule } from 'libs/commom/src';
+import { AuthModule } from './auth/auth.module';
 
 const MAO = require('multer-aliyun-oss');
 
@@ -34,10 +35,10 @@ const MAO = require('multer-aliyun-oss');
     //   //dest: 'uploads',
     //   storage: MAO({
     //     config: {
-    //       region: 'oss-cn-shenzhen',
-    //       accessKeyId: 'LTAI4G3K2Ak5iKu6732uSm87',
-    //       accessKeySecret: 'ZtG1AxnK9sYMzsaf94QC2jfqHEeSdK',
-    //       bucket: 'webstack',
+    //       region: process.env.OSS_REGION,
+    //       accessKeyId: process.env.OSS_ACCESS_KEY_ID,
+    //       accessKeySecret: process.env.OSS_ACCESS_KEY_SECERT,
+    //       bucket:process.env.OSS_BUCKET,
     //     },
     //   }),
     // }),
@@ -46,6 +47,7 @@ const MAO = require('multer-aliyun-oss');
     UsersModule,
     WebstackModule,
     CategoryModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
