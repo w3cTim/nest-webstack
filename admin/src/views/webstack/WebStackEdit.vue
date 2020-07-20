@@ -2,11 +2,7 @@
   <div>
     <h3>{{ isNew ? '创建' : '编辑' }} WebStack</h3>
     <!-- vue-ele-from 基于 element-ui 的数据驱动表单组件 -->
-    <ele-form
-      v-model="data"
-      :form-desc="fields"
-      :request-fn="submit"
-    ></ele-form>
+    <ele-form v-model="data" :form-desc="fields" :request-fn="submit"></ele-form>
   </div>
 </template>
 
@@ -30,7 +26,7 @@ export default class CourseEdit extends Vue {
   }
 
   async fetch() {
-    const res = await this.$http.get(`webstack/${this.id}`)
+    const res = await this.$axios.get(`webstack/${this.id}`)
     this.data = res.data
   }
 
@@ -38,7 +34,7 @@ export default class CourseEdit extends Vue {
     const url = this.isNew ? `webstack` : `webstack/${this.id}`
     const method = this.isNew ? 'post' : 'put'
 
-    await this.$http[method](url, data)
+    await this.$axios[method](url, data)
     this.$message.success('保存成功')
     this.data = {}
     this.$router.go(-1)

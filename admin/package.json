@@ -5,10 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6"
   },
   "dependencies": {
-    "@smallwei/avue": "2.4.0",
+    "@smallwei/avue": "^2.6.12",
     "@types/axios": "^0.14.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
@@ -17,20 +18,25 @@
     "vue-class-component": "^7.2.3",
     "vue-ele-form": "^0.8.25",
     "vue-property-decorator": "^8.4.2",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue-svgicon": "^3.2.6"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-plugin-typescript": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^2.0.5",
     "typescript": "~3.9.3",
     "vue-cli-plugin-element": "~1.0.1",
     "vue-template-compiler": "^2.6.11"

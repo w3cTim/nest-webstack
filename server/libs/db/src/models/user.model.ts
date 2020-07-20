@@ -1,5 +1,8 @@
 import { prop, modelOptions, DocumentType } from '@typegoose/typegoose';
 import { ApiProperty } from '@nestjs/swagger';
+
+// bcryptjs 散列 加盐 加密
+// https://www.yuque.com/hello-pg8s3/ui9z3s/ay2dgi#c4y9H
 import { hashSync } from 'bcryptjs';
 
 export type UserDocument = DocumentType<User>;

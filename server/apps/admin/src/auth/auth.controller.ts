@@ -33,8 +33,10 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   // req 策略返回值
   async login(@Body() dto: LoginDto, @CurrentUser() user: UserDocument) {
+    const payload = { username: user.username, id: user._id };
     return {
-      token: this.jwtSerice.sign(String(user._id)),
+      // 过期时间 10 小时
+      token: this.jwtSerice.sign(payload, { expiresIn: '10h' }),
     };
   }
 

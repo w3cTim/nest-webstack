@@ -1,11 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { WebStack } from '@libs/db/models/webstack.model';
 import { Category } from '@libs/db/models/category.model';
 import { Crud } from 'nestjs-mongoose-crud';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
 @Crud({
   model: WebStack,
 })
@@ -29,6 +32,10 @@ export class WebstackController {
     return {
       title: '站点管理',
       translate: false,
+      defaultSort: {
+        prop: 'orderNum',
+        order: 'descending',
+      },
       column: [
         {
           prop: 'name',
@@ -69,18 +76,25 @@ export class WebstackController {
             'image/x-icon',
             'image/svg+xml',
             'image/gif',
+            'image/webp',
           ],
           listType: 'picture-img',
-          tip: '只能上传 jpg/png/gif/ico/svg 文件',
+          tip: '只能上传 jpg/png/gif/ico/webp/svg 文件',
           type: 'upload',
           action: 'upload',
         },
-
         { prop: 'keyword', label: '关键字', span: 24 },
+        {
+          prop: 'orderNum',
+          label: '排序序号',
+          type: 'number',
+          sortable: true,
+          span: 12,
+        },
         {
           prop: 'count',
           label: '访问次数',
-          span: 24,
+          span: 12,
           editDetail: true,
           addDisabled: true,
         },

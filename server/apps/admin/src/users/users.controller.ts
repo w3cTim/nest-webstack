@@ -1,9 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { User } from '@libs/db/models/user.model';
 import { Crud } from 'nestjs-mongoose-crud';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
 @Crud({
   model: User,
 })

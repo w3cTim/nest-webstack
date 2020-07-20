@@ -14,4 +14,8 @@ export class Category {
   @prop()
   @ApiProperty({ description: 'icofoot' })
   icofont: string;
+
+  @prop()
+  @ApiProperty({ description: '排序序号，越大越靠前', default: 1 })
+  orderNum: number;
 }

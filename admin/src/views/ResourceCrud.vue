@@ -16,13 +16,16 @@
 </template>
 
 <script lang="ts">
+// vue-property-decorator 是在 vue-class-component 上增强更多的结合 Vue 特性的装饰器
 import { Vue, Component, Prop } from 'vue-property-decorator'
+import iconList from '../utils/iconfont'
 
 @Component({})
-export default class ResourceList extends Vue {
+export default class ResourceCrud extends Vue {
   @Prop(String) resource!: string
+
   data: any = {}
-  option: any = {}
+  option: any = { border: true, stripe: true, showHeder: true, index: true, sizeValue: 'mini' }
   page: any = {
     // pageSize: 2,
     // pageSizes: [2, 5, 10],
@@ -33,8 +36,21 @@ export default class ResourceList extends Vue {
   }
 
   async fetchOption() {
-    const res = await this.$http.get(`${this.resource}/option`)
-    this.option = res.data
+    const res = await this.$axios.get(`${this.resource}/option`)
+
+    if (res.data.column) {
+      res.data.column.forEach((e) => {
+        if (e.type === 'icon') {
+          e.iconList.forEach((element) => {
+            if (element.label === '阿里云图标') {
+              element.list = iconList
+            }
+          })
+        }
+      })
+    }
+
+    this.option = { ...this.option, ...res.data }
   }
 
   async changePage({ pageSize, currentPage }) {
@@ -67,17 +83,18 @@ export default class ResourceList extends Vue {
   }
 
   async fetch() {
-    const res = await this.$http.get(`${this.resource}`, {
+    const res: any = await this.$axios.get(`${this.resource}`, {
       params: {
         query: this.query,
       },
     })
+
     this.page.total = res.data.total
     this.data = res.data
   }
 
   async create(row, done) {
-    await this.$http.post(`${this.resource}`, row)
+    await this.$axios.post(`${this.resource}`, row)
     this.$message.success('创建成功')
     this.fetch()
     done()
@@ -88,7 +105,7 @@ export default class ResourceList extends Vue {
     // AVue 会在数据中添加 $index，而在 MongoDB 以 $ 开头的是有特殊意义的操作符
     // 所以提交的数据得删除
     delete data.$index
-    await this.$http.put(`${this.resource}/${row._id}`, data)
+    await this.$axios.put(`${this.resource}/${row._id}`, data)
     this.$message.success('更新成功')
     this.fetch()
     done()
@@ -100,7 +117,7 @@ export default class ResourceList extends Vue {
     } catch (e) {
       return
     }
-    await this.$http.delete(`${this.resource}/${row._id}`)
+    await this.$axios.delete(`${this.resource}/${row._id}`)
     this.$message.success('删除成功')
     this.fetch()
   }
@@ -111,7 +128,7 @@ export default class ResourceList extends Vue {
   }
 
   //@param: file, done, loading, column
-  //   uploadBefore(file, done) {
+  //   uploadBefore(file, done) {s
   //     // console.log(file, column)
   //     // 如果你想修改file文件,由于上传的file是只读文件，必须复制新的file才可以修改名字，完后赋值到done函数里,如果不修改的话直接写done()即可
   //     // var newFile = new File([file], '1234', { type: file.type })

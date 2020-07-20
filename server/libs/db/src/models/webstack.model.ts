@@ -40,4 +40,8 @@ export class WebStack {
   @prop()
   @ApiProperty({ description: '访问次数', default: 0 })
   count: number;
+
+  @prop()
+  @ApiProperty({ description: '排序序号，越大越靠前', default: 1 })
+  orderNum: number;
 }

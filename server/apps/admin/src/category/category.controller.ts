@@ -1,9 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { Category } from '@libs/db/models/category.model';
 import { Crud } from 'nestjs-mongoose-crud';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
 @Crud({
   model: Category,
 })
@@ -17,6 +20,10 @@ export class CategoryController {
   option() {
     return {
       title: '分类管理',
+      defaultSort: {
+        prop: 'orderNum',
+        order: 'descending',
+      },
       column: [
         {
           prop: 'name',
@@ -34,29 +41,26 @@ export class CategoryController {
           width: 120,
           iconList: [
             {
+              label: '阿里云图标',
+              list: [],
+            },
+            {
               label: '基本图标',
               list: [
-                {
-                  label: '名称1',
-                  value: 'el-icon-info',
-                },
                 {
                   label: '名称2',
                   value: 'el-icon-error',
                 },
               ],
             },
-            {
-              label: '阿里云图标',
-              list: [
-                'iconfont icon-zhongyingwen',
-                'iconfont icon-rizhi1',
-                'iconfont icon-bug',
-                'iconfont icon-qq1',
-                'iconfont icon-weixin1',
-              ],
-            },
           ],
+        },
+        {
+          prop: 'orderNum',
+          label: '排序序号',
+          type: 'number',
+          sortable: true,
+          span: 12,
         },
       ],
     };
