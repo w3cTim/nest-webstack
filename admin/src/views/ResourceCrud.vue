@@ -5,6 +5,7 @@
       :page="page"
       :data="data.data"
       :option="option"
+      v-model="form"
       @row-save="create"
       @row-update="update"
       @row-del="remove"
@@ -25,10 +26,11 @@ export default class ResourceCrud extends Vue {
   @Prop(String) resource!: string
 
   data: any = {}
+  form: any = {}
   option: any = { border: true, stripe: true, showHeder: true, index: true, sizeValue: 'mini' }
   page: any = {
-    // pageSize: 2,
-    // pageSizes: [2, 5, 10],
+    pageSize: 20,
+    pageSizes: [10, 20, 30, 50],
     total: 0,
   }
   query: any = {
@@ -42,7 +44,7 @@ export default class ResourceCrud extends Vue {
       res.data.column.forEach((e) => {
         if (e.type === 'icon') {
           e.iconList.forEach((element) => {
-            if (element.label === '阿里云图标') {
+            if (element.label === '阿里图标') {
               element.list = iconList
             }
           })
@@ -51,6 +53,7 @@ export default class ResourceCrud extends Vue {
     }
 
     this.option = { ...this.option, ...res.data }
+    // console.log(this.option)
   }
 
   async changePage({ pageSize, currentPage }) {
@@ -74,7 +77,7 @@ export default class ResourceCrud extends Vue {
     for (let k in where) {
       const field = this.option.column.find((v) => v.prop === k)
       if (field.regex) {
-        where[k] = { $regex: where[k] }
+        where[k] = { $regex: where[k][0] }
       }
     }
     this.query.where = where
@@ -94,6 +97,12 @@ export default class ResourceCrud extends Vue {
   }
 
   async create(row, done) {
+    // console.log(row, this.form)
+    // avue bug
+    if (row.url && Array.isArray(row.url)) {
+      row.url = row.url[0]
+    }
+
     await this.$axios.post(`${this.resource}`, row)
     this.$message.success('创建成功')
     this.fetch()
@@ -101,7 +110,9 @@ export default class ResourceCrud extends Vue {
   }
 
   async update(row, index, done) {
+    // console.log(row, this.form)
     const data = JSON.parse(JSON.stringify(row))
+    // console.log(data, this.form)
     // AVue 会在数据中添加 $index，而在 MongoDB 以 $ 开头的是有特殊意义的操作符
     // 所以提交的数据得删除
     delete data.$index
@@ -128,7 +139,7 @@ export default class ResourceCrud extends Vue {
   }
 
   //@param: file, done, loading, column
-  //   uploadBefore(file, done) {s
+  //   uploadBefore(file, done) {
   //     // console.log(file, column)
   //     // 如果你想修改file文件,由于上传的file是只读文件，必须复制新的file才可以修改名字，完后赋值到done函数里,如果不修改的话直接写done()即可
   //     // var newFile = new File([file], '1234', { type: file.type })

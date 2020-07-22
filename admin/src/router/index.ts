@@ -12,6 +12,11 @@ Vue.use(VueRouter)
 // 标记好对应的数据类型，就有提示，这就是 TypeScript 好处
 const routes: RouteConfig[] = [
   {
+    name: 'login',
+    path: '/login',
+    component: Login,
+  },
+  {
     path: '/',
     component: Main,
     children: [
@@ -31,11 +36,6 @@ const routes: RouteConfig[] = [
         component: Icon,
       },
     ],
-  },
-  {
-    name: 'login',
-    path: '/login',
-    component: Login,
   },
 ]
 

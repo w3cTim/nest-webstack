@@ -8,7 +8,7 @@ import { Category } from './category.model';
   },
 })
 export class WebStack {
-  @ApiProperty({ description: '网站名称', example: 'www.baidu.com' })
+  @ApiProperty({ description: '网站名称', example: 'google' })
   @prop()
   name: string;
 
@@ -37,7 +37,7 @@ export class WebStack {
   @ApiProperty({ description: '网址' })
   url: string;
 
-  @prop()
+  @prop({ default: 0 })
   @ApiProperty({ description: '访问次数', default: 0 })
   count: number;
 

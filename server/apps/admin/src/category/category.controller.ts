@@ -41,7 +41,7 @@ export class CategoryController {
           width: 120,
           iconList: [
             {
-              label: '阿里云图标',
+              label: '阿里图标',
               list: [],
             },
             {

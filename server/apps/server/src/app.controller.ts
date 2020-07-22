@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { InjectModel } from 'nestjs-typegoose';
 import { WebStack } from '@libs/db/models/webstack.model';
@@ -24,6 +24,7 @@ export class AppController {
   async Category() {
     const category = (await this.categoryModel.find().sort('-orderNum')).map(
       v => ({
+        id: v._id,
         label: v.name,
         icon: v.icofont,
       }),
@@ -39,5 +40,12 @@ export class AppController {
       .select('-count') // 排除 count 字段
       .sort('-orderNum');
     return webstack;
+  }
+
+  @Get('wscount')
+  async WebStackLog(@Query('id') id: string) {
+    if (id) {
+      await this.webStackModel.findByIdAndUpdate(id, { $inc: { count: 1 } });
+    }
   }
 }

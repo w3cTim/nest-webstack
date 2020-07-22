@@ -33,7 +33,7 @@ export class WebstackController {
       title: '站点管理',
       translate: false,
       defaultSort: {
-        prop: 'orderNum',
+        prop: 'createdAt',
         order: 'descending',
       },
       column: [
@@ -49,6 +49,7 @@ export class WebstackController {
         {
           prop: 'url',
           type: 'url',
+          alone: true,
           label: '网址',
           search: true,
           regex: true,
@@ -61,13 +62,23 @@ export class WebstackController {
           sortable: true,
           type: 'select',
           dicData: category,
+          search: true,
           row: true,
         },
         { prop: 'descript', label: '描述', span: 24 },
         {
           prop: 'logo',
-          label: 'logo',
+          label: '图标',
+          type: 'upload',
+          action: 'upload',
           span: 24,
+
+          propsHttp: {
+            // res: 'url',
+            url: 'url',
+            name: 'filename',
+          },
+          isString: true,
           width: '100px',
           accept: [
             'image/png',
@@ -79,9 +90,8 @@ export class WebstackController {
             'image/webp',
           ],
           listType: 'picture-img',
+          multiple: false,
           tip: '只能上传 jpg/png/gif/ico/webp/svg 文件',
-          type: 'upload',
-          action: 'upload',
         },
         { prop: 'keyword', label: '关键字', span: 24 },
         {
@@ -96,7 +106,21 @@ export class WebstackController {
           label: '访问次数',
           span: 12,
           editDetail: true,
-          addDisabled: true,
+          addDisplay: false,
+        },
+        {
+          prop: 'createdAt',
+          label: '创建日期',
+          span: 12,
+          editDetail: true,
+          addDisplay: false,
+        },
+        {
+          prop: 'updatedAt',
+          label: '修改日期',
+          span: 12,
+          editDetail: true,
+          addDisplay: false,
         },
       ],
     };
