@@ -104,12 +104,12 @@ export default class Login extends Vue {
           localStorage.setItem('bearer', JSON.stringify(auth.data))
           this.$router.push({ path: this.redirect || '/' })
         } catch (e) {
-          console.log(e)
+          console.error(e)
         } finally {
           this.loading = false
         }
       } else {
-        console.log('error submit!!')
+        console.error('error submit!!')
         return false
       }
     })

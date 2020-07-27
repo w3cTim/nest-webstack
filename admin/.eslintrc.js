@@ -1,6 +1,5 @@
 module.exports = {
   root: true,
-
   env: {
     node: true,
   },
@@ -10,7 +9,8 @@ module.exports = {
     '@vue/typescript',
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'off',
+    // 生产环境代码里 不允许出现  debugger
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   },
   parserOptions: {
