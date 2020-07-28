@@ -9,20 +9,23 @@ WORKDIR /nestWebStack
 
 COPY . .
 
-# 如果是国内服务器 可设置淘宝源
+# 如果是国内服务器 设置淘宝源
 # RUN npm config set registry https://registry.npm.taobao.org
 
-# 运行 npm install 在容器中安装依赖
+# 运行 npm install 安装依赖
 RUN npm install
 
-# 运行 nest build 在容器中编译 admin server 服务
+# 运行 nest build 编译 admin、server 服务
 RUN npm run build_admin
 RUN npm run build_server
 
 # 暴露的端口
 EXPOSE 3008 3009
 
+# 定参 
 ENTRYPOINT [ "npm" ,"run"]
+# 变参 默认启动 server
+# 如要运行 admin 在 docker run image 后加 start:prod_admin 参数
 CMD ["start:prod_server"]
-# CMD npm run start:prod_server
+# CMD node dist/apps/server/main.js
 

@@ -1,6 +1,6 @@
 # nest-webstack
 
-NestJs+VueJS+MongoDB 开发 WebStack 网站 - 源码
+NestJs+VueJS+MongoDB 开发 WebStack
 
 ```shell
 # 全局安装 nestjs cli
