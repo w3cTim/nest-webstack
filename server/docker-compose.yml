@@ -9,11 +9,11 @@ services:
     container_name: webstack_server
     ports:
       - 3008:3008
-    volumes: webstack_server:/nestwebstack
+    volumes: webstack_server_volumes:/nestwebstack
   webstack_admin:
     image: webstack:latest
     container_name: webstack_admin
     ports:
       - 3009:3009
-    volumes: webstack_admin:/nestwebstack
+    volumes: webstack_admin_volumes:/nestwebstack
     command: start:prod_admin
