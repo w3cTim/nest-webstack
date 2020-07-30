@@ -1,12 +1,14 @@
 # .dockerignore
+# Nest 打包后还需要依赖 node_modules，所以不能忽略
 # node_modules
-**/node_modules
+# .env
+# ** 匹配任意数量目录（包括零）的特殊通配符字符串
 **/.git
 **/.gitignore
 # **/bin
 # **/charts
 # **/docker-compose*
 # **/Dockerfile*
-# **/npm-debug.log
+npm-debug.log
 LICENSE
 README.md

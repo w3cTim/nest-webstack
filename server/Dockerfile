@@ -4,9 +4,10 @@
 #（包含 alpine 的镜像版本相比于 latest 版本更加小巧，更适合作为 docker 镜像使用）
 FROM node:lts-alpine
 
-# 将工作区设为 /app，和其他系统文件隔离
+# 自定义镜像的默认工作目录
 WORKDIR /nestWebStack
 
+# 复制当前目录所有文件到 镜像中 workdir 中
 COPY . .
 
 # 如果是国内服务器 设置淘宝源
@@ -19,7 +20,11 @@ RUN npm install
 RUN npm run build_admin
 RUN npm run build_server
 
-# 暴露的端口
+# 编译后只需要生产依赖
+# RUN rm -rf node_modules
+# RUN npm install --production
+
+# 暴露的端口 3008：客户端 api； 3009：服务端 api
 EXPOSE 3008 3009
 
 # 定参 
