@@ -1,0 +1,19 @@
+version: '3'
+services:
+  webstack_server:
+    restart: alwavs
+    build: # 构建自定义镜像
+      context: . # 指定 Dockerfile 文件的所在路径
+      dockerfile: Dockerfile # 指定 Dockerfile 文件名称
+    image: webstack:1.0.1 # 自定义镜像名称及版本，就是上面 build 后的镜像
+    container_name: webstack_server
+    ports:
+      - 3008:3008
+    volumes: webstack_server:/nestwebstack
+  webstack_admin:
+    image: webstack:latest
+    container_name: webstack_admin
+    ports:
+      - 3009:3009
+    volumes: webstack_admin:/nestwebstack
+    command: start:prod_admin

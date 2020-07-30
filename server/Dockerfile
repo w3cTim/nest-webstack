@@ -5,7 +5,7 @@
 FROM node:lts-alpine
 
 # 自定义镜像的默认工作目录
-WORKDIR /nestWebStack
+WORKDIR /nestwebstack
 
 # 复制当前目录所有文件到 镜像中 workdir 中
 COPY . .

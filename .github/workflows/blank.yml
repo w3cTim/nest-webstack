@@ -13,4 +13,8 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          script: whoami
+          script: |
+            cd /var/www/nest-webstack
+            git pull
+            cd server
+            docker-compose up -d --build
