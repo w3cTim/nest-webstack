@@ -13,14 +13,14 @@ services:
       - 3008:3008
     volumes: # 使用标示的方式必须指定 volumes，这与直接 docker run 不同
       - webstack_server:/nestwebstack
-#   webstack_admin:
-#     image: webstack:1.0.1
-#     container_name: webstack_admin
-#     ports:
-#       - 3009:3009
-#     volumes: # 当然也可以直接使用绝对路径
-#       - webstack_admin:/nestwebstack
-#     command: start:prod_admin
+  webstack_admin:
+    image: webstack:1.0.1
+    container_name: webstack_admin
+    ports:
+      - 3009:3009
+    volumes: # 当然也可以直接使用绝对路径
+      - webstack_admin:/nestwebstack
+    command: start:prod_admin
 
 # volume 可为空，为空使用 docker 引擎配置的默认驱动程序
 # 也可以自定义存储到其他机器上
