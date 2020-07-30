@@ -14,7 +14,7 @@ services:
     volumes: # 使用标示的方式必须指定 volumes，这与直接 docker run 不同
       - webstack_server:/nestwebstack
   webstack_admin:
-    image: webstack:latest
+    image: webstack:1.0.1
     container_name: webstack_admin
     ports:
       - 3009:3009
