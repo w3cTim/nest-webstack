@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile # 指定 Dockerfile 文件名称
     image: webstack:1.0.1 # 自定义镜像名称及版本，就是上面 build 后的镜像
     container_name: webstack_server
-    driver: bridge
+    network_mode: bridge
     ports:
       - 3008:3008
     volumes: # 使用标示的方式必须指定 volumes，这与直接 docker run 不同
@@ -17,7 +17,7 @@ services:
   webstack_admin:
     image: webstack:1.0.1
     container_name: webstack_admin
-    driver: bridge
+    network_mode: bridge
     ports:
       - 3009:3009
     volumes: # 当然也可以直接使用绝对路径
