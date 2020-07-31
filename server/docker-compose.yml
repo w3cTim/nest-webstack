@@ -23,8 +23,9 @@ services:
     command: start:prod_admin
 
 # volume 可为空，为空使用 docker 引擎配置的默认驱动程序
-# 也可以自定义存储到其他机器上
+# 也可以自定义存储到其他机器上，可以指定 volume name，不指定默认会加上 stack name 前缀
 # https://docs.docker.com/compose/compose-file/#volume-configuration-reference
 volumes:
   webstack_admin:
+    name: webstack_admin
   webstack_server:
