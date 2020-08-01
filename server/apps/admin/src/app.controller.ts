@@ -4,10 +4,12 @@ import {
   Post,
   UseInterceptors,
   UploadedFile,
+  UseGuards,
 } from '@nestjs/common';
 
 import { AppService } from './app.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller()
 export class AppController {
@@ -20,6 +22,7 @@ export class AppController {
 
   // 文件上传
   @Post('upload')
+  @UseGuards(AuthGuard('jwt'))
   // 上传拦截器 file 为前端上传 key
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile('file') file) {
