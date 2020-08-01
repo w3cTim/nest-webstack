@@ -4,7 +4,7 @@ name: WebStack CI
 on: [push]
 jobs:
   build:
-    name: Build
+    name: CI/CD
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh WebStack CI
@@ -17,8 +17,8 @@ jobs:
             cd /var/www/nest-webstack
             git pull
             cd server
-            docker-compose up --build
+            docker-compose up -d --build
             cd ../admin
-            npm install
+            npm ci
             npm run build
             mkdir -p /home/web/website && cp -rf dist/* /home/web/website

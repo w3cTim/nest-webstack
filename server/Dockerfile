@@ -13,8 +13,8 @@ COPY . .
 # 如果是国内服务器 设置淘宝源
 # RUN npm config set registry https://registry.npm.taobao.org
 
-# 运行 npm install 安装依赖
-RUN npm install
+# 运行 npm ci 安装依赖
+RUN npm ci
 
 # 运行 nest build 编译 admin、server 服务
 RUN npm run build_admin
