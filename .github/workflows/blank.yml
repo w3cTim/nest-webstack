@@ -18,3 +18,7 @@ jobs:
             git pull
             cd server
             docker-compose up --build
+            cd ../admin
+            npm install
+            npm run build
+            mkdir -p /home/web/website && cp -rf dist/* /home/web/website
