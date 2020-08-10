@@ -20,6 +20,7 @@ export class AuthController {
   @Post('register')
   @ApiOperation({ summary: '注册，暂未开放' })
   @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   async register(@Body() dto: RegisterDto) {
     const { username, password } = dto;
     const user = await this.userModel.create({
